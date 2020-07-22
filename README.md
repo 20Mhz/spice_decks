@@ -1,4 +1,4 @@
-vlsi_decks
+ngspice_decks
 ==========
 
 Useful spice decks
