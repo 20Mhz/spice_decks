@@ -1,0 +1,14 @@
+$DATA1 SOURCE='HSPICE' VERSION='I-2013.12-SP1 32-BIT'
+.TITLE '* calibration for amis 0.5um'
+ index            cpermicron       inputcap         cdpermic          
+                  cpermic          rp               rn                
+                  invr             capr             diffr             
+                  invf             capf             difff             
+                  errorr           errorf           ediff_r           
+                  ediff_f          temper           alter#            
+    5.0000         1.405e-15        2.024e-19        8.999e-16        
+                   1.405e-15        3.699e+04        1.629e+04        
+                   2.624e-10        2.473e-10        2.624e-10        
+                   2.311e-10        2.463e-10        2.370e-10        
+                   1.502e-11        1.523e-11        4.780e-14        
+                   5.933e-12         25.0000        1                 

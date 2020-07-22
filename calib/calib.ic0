@@ -1,0 +1,23 @@
+* "simulator" "HSPICE" 
+* "version" "I-2013.12-SP1 32-BIT"
+* "format" "HSP"
+* "rundate" "08:03:28 05/14/2014 "
+* "netlist" "calib.sp "
+* "runtitle" "* calibration for amis 0.5um"
+* time =    0.            
+* temperature =   25.0000        
+*** BEGIN: Saved Operating Point ***                     
+.option 
++ gmindc=   1.0000p       
+.nodeset
++ a1 =   0.            
++ vdd =   3.3000        
++ y1 =   3.3000        
++ y1_cd =   3.3000        
++ y1_cg =   3.3000        
++ y2 =   9.5078n       
++ y2_cd =   9.5078n       
++ y2_cg =   9.5078n       
++ y3 =   3.3000        
++ y4 =   9.5078n       
+***   END: Saved Operating Point ***                     
