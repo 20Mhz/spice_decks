@@ -1,0 +1,129 @@
+* Wapper, need actual model
+.subckt ami06N_mc d g s b
+.param 
++w=1
++l=1
++m=1
++ad=0
++as=0
++pd=0
++ps=0
++ami06N_u0=
++ami06N_vth0=
++ami06N_Avt=
++ami06N_Abeta=
++xi=agauss(0,1,1)
++ami06N_u0_mc='ami06N_u0  + xi*pow((ami06N_u0*ami06N_Abeta/100)/sqrt(w*l),2)'
++ami06N_vth0_mc='ami06N_vth0 + xi*pow(ami06N_Avt/sqrt(w*l),2)'
+* Avt+=.0005/Vbs
+m1 d g s b ami06N_mc m='m' w='w' l='l' ad='ad' as='as' pd='pd' ps='ps' 
+
+.csparam cs_ami06N_u0			='ami06N_u0'
+.csparam cs_ami06N_vth0			='ami06N_vth0'
+.csparam cs_xi 			='xi'
+.csparam cs_ami06N_Avt        	='ami06N_Avt'
+.csparam cs_ami06N_beta       	='ami06N_Abeta'
+.csparam cs_ami06N_u0_mc      	='ami06N_u0_mc'
+.csparam cs_ami06N_vth0_mc    	='ami06N_vth0_mc'
+
+.MODEL ami06N_mc NMOS (                             LEVEL   = 49 
++VERSION = 3.1            TNOM    =                 TOX     = 
++XJ      =              NCH     =   VTH0    = ami06N_vth0_mc 
++K1      =              K2      =   K3      = 
++K3B     =              W0      =   NLX     = 
++DVT0W   =              DVT1W   =   DVT2W   = 
++DVT0    =              DVT1    =   DVT2    = 
++U0      = ami06N_u0_mc UA      =   UB      = 
++UC      =              VSAT    =   A0      = 
++AGS     =              B0      =   B1      = 
++KETA    =              A1      =   A2      = 
++RDSW    =              PRWG    =   PRWB    = 
++WR      =              WINT    =   LINT    = 
++XL      =              XW      =   DWG     =
++DWB     =              VOFF    =   NFACTOR = 
++CIT     =              CDSC    =   CDSCD   = 
++CDSCB   =              ETA0    =   ETAB    = 
++DSUB    =              PCLM    =   PDIBLC1 = 
++PDIBLC2 =              PDIBLCB =   DROUT   = 
++PSCBE1  =              PSCBE2  =   PVAG    = 
++DELTA   =              RSH     =   MOBMOD  = 
++PRT     =              UTE     =   KT1     = 
++KT1L    =              KT2     =   UA1     = 
++UB1     =              UC1     =   AT      = 
++WL      =              WLN     =   WW      = 
++WWN     =              WWL     =   LL      = 
++LLN     =              LW      =   LWN     = 
++LWL     =              CAPMOD  =   XPART   = 
++CGDO    =              CGSO    =   CGBO    = 
++CJ      =              PB      =   MJ      = 
++CJSW    =              PBSW    =   MJSW    = 
++CJSWG   =              PBSWG   =   MJSWG   = 
++CF      =              PVTH0   =   PRDSW   = 
++PK2     =              WKETA   =   LKETA   = 
++AF      =              KF      = )
+.ends ami06N_mc
+
+.subckt ami06P_mc d g s b 
+.param 
++w=1
++l=1
++m=1
++ad=0
++as=0
++pd=0
++ps=0
++ami06P_u0=
++ami06P_vth0=
++ami06P_Avt=
++ami06P_Abeta= 
++xi=agauss(0,1,1)
++ami06P_u0_mc='ami06P_u0  + xi*pow((ami06P_u0*ami06P_Abeta/100)/sqrt(w*l),2)'
++ami06P_vth0_mc='ami06P_vth0 + xi*pow(ami06P_Avt/sqrt(w*l),2)'
+* Avt+=.0005/Vbs
+m1 d g s b ami06P_mc m='m' w='w' l='l' ad='ad' as='as' pd='pd' ps='ps' 
+
+.csparam cs_ami06P_u0			='ami06P_u0'
+.csparam cs_ami06P_vth0			='ami06P_vth0'
+.csparam cs_xi 			='xi'
+.csparam cs_ami06P_Avt        	='ami06P_Avt'
+.csparam cs_ami06P_Abeta       	='ami06P_Abeta'
+.csparam cs_ami06P_u0_mc      	='ami06P_u0_mc'
+.csparam cs_ami06P_vth0_mc    	='ami06P_vth0_mc'
+
+.MODEL ami06P_mc PMOS (           LEVEL   = 49
++VERSION =              TNOM    =   TOX     = 
++XJ      =              NCH     =   VTH0    = ami06P_vth0_mc 
++K1      =              K2      =   K3      = 
++K3B     =              W0      =   NLX     = 
++DVT0W   =              DVT1W   =   DVT2W   = 
++DVT0    =              DVT1    =   DVT2    = 
++U0      = ami06P_u0_mc UA      =   UB      = 
++UC      =              VSAT    =   A0      = 
++AGS     =              B0      =   B1      = 
++KETA    =              A1      =   A2      = 
++RDSW    =              PRWG    =   PRWB    = 
++WR      =              WINT    =   LINT    = 
++XL      =              XW      =   DWG     = 
++DWB     =              VOFF    =   NFACTOR = 
++CIT     =              CDSC    =   CDSCD   = 
++CDSCB   =              ETA0    =   ETAB    = 
++DSUB    =              PCLM    =   PDIBLC1 = 
++PDIBLC2 =              PDIBLCB =   DROUT   = 
++PSCBE1  =              PSCBE2  =   PVAG    = 
++DELTA   =              RSH     =   MOBMOD  = 
++PRT     =              UTE     =   KT1     = 
++KT1L    =              KT2     =   UA1     = 
++UB1     =              UC1     =   AT      = 
++WL      =              WLN     =   WW      = 
++WWN     =              WWL     =   LL      = 
++LLN     =              LW      =   LWN     = 
++LWL     =              CAPMOD  =   XPART   = 
++CGDO    =              CGSO    =   CGBO    = 
++CJ      =              PB      =   MJ      = 
++CJSW    =              PBSW    =   MJSW    = 
++CJSWG   =              PBSWG   =   MJSWG   = 
++CF      =              PVTH0   =   PRDSW   = 
++PK2     =              WKETA   =   LKETA   =  
++AF      =              KF      = )
+.ends ami06P_mc
+
