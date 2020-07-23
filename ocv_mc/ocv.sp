@@ -13,16 +13,12 @@
 
 * Params 
 .param trs='0.1n'
-*.param CperMicron=optrange(1f,0.01f, 30f)
 .param CperMicron=1.487f
-*.param WN_DIFF=optrange(3u,1u, 1000u)
 .param WN_DIFF=224.86u
-*.meas inputCap param = 'CperMicron*16*(6+3)*1u'
-*.meas CdPerMic param ='inputCap/WN_DIFF'
 
 * Subcircuits
 .SUBCKT invx1 A Y vdd gnd 
-* SET A,P 0 to account only for gate cap
+
 .param m='1'
 .param Ldiff='1.2u'
 .param W='3u'
@@ -42,12 +38,6 @@ x4 Y3 Y4 vdd gnd invx1 m=256
 
 * Analysis
 .tran 1p 2n 
-*.meas tran invR 
-*+ TRIG v(Y1)  VAL='supply*0.5' fall=1
-*+ TARG v(Y2) VAL='supply*0.5' rise=1
-*.meas tran invF 
-*+ TRIG v(Y1)  VAL='supply*0.5' rise=1
-*+ TARG v(Y2) VAL='supply*0.5' fall=1
 .probe v(Y1) v(Y2)
 .print invR
 .option post brief accurate
