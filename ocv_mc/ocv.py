@@ -3,6 +3,7 @@ import time
 import timeit
 import ngspyce
 import numpy as np
+import scipy.stats as scs 
 from scipy.stats import norm
 from matplotlib import pyplot as plt
 import matplotlib.mlab as mlab
@@ -40,9 +41,9 @@ print("Vector size: %d" % inv_delay.size)
 print("Median: %f %s" % (mu, units)) 
 print("Standard deviation: %f %s (%.2f%%)" % (sigma, units, sigma_p100))
 
-n, bins, patches = plt.hist(inv_delay, 30, normed=True, facecolor='green', alpha=0.75)
+n, bins, patches = plt.hist(inv_delay, 30, density=True, facecolor='green', alpha=0.75)
 
-y = mlab.normpdf(bins, mu, sigma)
+y = scs.norm.pdf(bins, mu, sigma)
 l = plt.plot(bins, y, 'r--', linewidth=2)
 
 # Plot
