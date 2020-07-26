@@ -1,4 +1,5 @@
 Uses FO4 chain of inverters to find equivalent capacitance on gates and diffusions, then uses the delay to estimate transistor's R
+```
 python3 calib.py
 Optimization terminated successfully.
          Current function value: 35.475500
@@ -16,3 +17,4 @@ Ctot  223.08f
 R     2 KOhm
 RP     10753 Ohm*u
 RN     4617 Ohm*u
+```
