@@ -16,7 +16,7 @@
 .inc './capValues.inc'
 *.param WN_DIFF=224.86u
 .param inputCap = 'CperMicron*16*(6+3)*1u'
-.param Ctot = 223.08f
+.param Ctot = 199.35f
 .param SD_CONT='1.5u'
 .param WN_DIFF = 'Ctot/CdPerMicron*1u'
 *.param WN_DIFF = '223u'

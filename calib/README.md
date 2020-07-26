@@ -2,19 +2,22 @@ Uses FO4 chain of inverters to find equivalent capacitance on gates and diffusio
 ```
 python3 calib.py
 Optimization terminated successfully.
-         Current function value: 35.475500
-         Iterations: 27
-         Function evaluations: 55
-Optimization terminated successfully.
-         Current function value: 2.006200
+         Current function value: 36.003800
          Iterations: 23
          Function evaluations: 46
-Found in  10.231 seconds
-CperMicron=1.5492f
-CdperMicron=0.7694f
+Optimization terminated successfully.
+         Current function value: 2.006400
+         Iterations: 22
+         Function evaluations: 44
+Found in  8.897 seconds
+CperMicron=1.3844f
+CdperMicron=0.6876f
 Delay 257.54ps
-Ctot  223.08f
-R     2 KOhm
-RP     10753 Ohm*u
-RN     4617 Ohm*u
+Delay Rise 277.11ps
+Delay Fall 237.97ps
+Ctot  199.35f
+R     8.387 KOhm
+RP     12.033 KOhm*u
+RN     5.166 KOhm*u
+Test: delay 2.6e+02ps
 ```
