@@ -18,15 +18,16 @@ class sim_type(Enum):
     INVR = 3
     INVF = 4
     INV = 5
+    FULL_WAVE = 6
 
-def spice_invFO4(cap, mode=sim_type.GATECAP):
+def spice_invFO4(cap, mode=sim_type.GATECAP, tf=2):
     import ngspyce
     with open('./capValues.inc','w') as f:
         f.write(f'.param supply=3.3\n')
         f.write(f'.param CperMicron={float(cap)}f\n')
         f.write(f'.param CdperMicron={float(cap)}f\n')
     ngspyce.source('calib.sp')
-    ngspyce.cmd('tran 1p 2n')
+    ngspyce.cmd(f'tran 1p {tf}n')
     # Get Inverter Baseline Delays
     r=ngspyce.cmd(f'meas tran invR TRIG v(Y1)  VAL={supply*0.5} fall=1  TARG v(Y2) VAL={supply*0.5} rise=1 ')
     invR=np.float(ngspyce.vector('invR')*scale)
@@ -60,6 +61,8 @@ def spice_invFO4(cap, mode=sim_type.GATECAP):
         return invF 
     elif (mode==sim_type.INV):
         return (invR+invF)/2 
+    elif (mode==sim_type.FULL_WAVE):
+        return  ngspyce.vector('v(Y1)')*scale,ngspyce.vector('v(Y2)')*scale
 
 def spice_invFO4_optGCAP(x):
     return spice_invFO4(x, sim_type.GATECAP)
@@ -106,4 +109,15 @@ print(f'R     {Rmean*1e-3:.3f} KOhm')
 print(f'RP     {RP*1e-3:.3f} KOhm*u')
 print(f'RN     {RN*1e-3:.3f} KOhm*u')
 print(f'Test: delay {0.7*(Rmean/4.5)*(Ctot*1e-15)*1e+12:3.2}ps')
+# Full Wave
+y1,y2=spice_invFO4(CperMicron, mode=sim_type.FULL_WAVE, tf=2.5)
 
+# Plot
+plt.plot(y1)
+plt.plot(y2)
+plt.xlabel('Time (%s)' % (units))
+plt.ylabel('Voltage (V)')
+plt.title('Delay')
+plt.grid(True)
+plt.savefig('inv_delay.png')
+plt.show()
